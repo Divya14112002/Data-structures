@@ -5,19 +5,19 @@ class Node{
 }
 class Linkedlist{
     Node head=null;
-    Node createNode(int data){
+    Node createnode(int data){
         Node nn=new Node();
         nn.data=data;
         nn.next=null;
         return nn;
     }
-    void InsertAtBeginning(int data){
-        Node nn=createNode(data);
+    void InsertAtbeginning(int data){
+        Node nn=createnode(data);
         nn.next=head;
         head=nn;
     }
     void InsertAtEnd(int data){
-        Node nn=createNode(data);
+        Node nn=createnode(data);
         Node temp=head;
         if(head==null){
             head=nn;
@@ -28,19 +28,41 @@ class Linkedlist{
             temp.next=nn;
         }
     }
-    void InsertAtParticularPosition(int data,int pos){
-        Node nn=createNode(data);
+    void Insertatparticularpo(int data,int pos){
+        Node nn=createnode(data);
         Node temp=head;
         if(head==null){
             head=nn;
-        }
-        else{
+        }else{
             while(--pos>0){
                 temp=temp.next;
             }
             nn.next=temp.next;
             temp.next=nn;
         }
+    }
+    void Deletebeginning(){
+        if(head!=null){
+            head=head.next;
+        }
+    }
+    void DeleteAtend(){
+        Node temp=head;
+        Node prev=null;
+        while(temp.next!=null){
+            prev=temp;
+            temp=temp.next;
+        }
+        prev.next=null;
+    }
+    void DeleteAtparticularpos(int pos1){
+        Node temp=head;
+        Node prev=null;
+        while(--pos1>0){
+            prev=temp;
+            temp=temp.next;
+        }
+        prev.next=temp.next;
     }
     void Finding(int key){
         Node temp=head;
@@ -52,7 +74,7 @@ class Linkedlist{
             while(temp!=null){
                 if(temp.data==key)
                 {
-                    System.out.print("Element found"); 
+                    System.out.println("Element found"); 
                     flag=1;
                     break;
                 }
@@ -79,16 +101,18 @@ public class Main
 	public static void main(String[] args) {
 		Scanner sc=new Scanner(System.in);
 		Linkedlist ll=new Linkedlist();
+		int n=sc.nextInt();
 		int pos=sc.nextInt();
+		int pos1=sc.nextInt();
 		int key=sc.nextInt();
-		ll.InsertAtBeginning(100);
-		ll.InsertAtBeginning(200);
-		ll.InsertAtBeginning(300);
-		ll.display();
-		ll.InsertAtEnd(400);
-		ll.display();
-		ll.InsertAtParticularPosition(500,pos);
-		ll.display();
+		for(int i=0;i<n;i++){
+		    ll.InsertAtbeginning(sc.nextInt());
+		}
+		ll.InsertAtEnd(sc.nextInt());
+		ll.Insertatparticularpo(sc.nextInt(),pos);
+		ll.Deletebeginning();
+		ll.DeleteAtend();
+		ll.DeleteAtparticularpos(pos1);
 		ll.Finding(key);
 		ll.display();
 	}
